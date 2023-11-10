@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:coffeeui/util/coffee_tile.dart';
+import 'package:coffeeui/util/coffee_type.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,6 +13,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+//list of coffee types
+  final List coffeeType = [
+    [
+      "Cappucino",
+      false,
+    ],
+    [
+      "Americano",
+      true,
+    ],
+    [
+      "Latte",
+      false,
+    ],
+    [
+      "Chai tea",
+      false,
+    ],
+    [
+      "Strungi",
+      false,
+    ],
+  ];
+
+  void coffeeTypeSelected(int index) {
+    setState(() {
+      for (int i = 0; i < coffeeType.length; i++) {
+        coffeeType[i][1] = false;
+      }
+      coffeeType[index][1] = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,14 +118,21 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 25.0,
           ),
-          //horizontal listview
-          Expanded(
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                CoffeeTile(),
-              ],
-            ),
+          //coffee types list view
+          Container(
+            height: 50,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: coffeeType.length,
+                itemBuilder: (context, index) {
+                  return CoffeeType(
+                      coffeeType: coffeeType[index][0],
+                      isSelected: coffeeType[index][1],
+                      onTap: () {
+                        // isSelected = !isSelected;
+                        coffeeTypeSelected(index);
+                      });
+                }),
           ),
 
           //bottom nav bar
