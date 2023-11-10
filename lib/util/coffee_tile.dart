@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CoffeeTile extends StatelessWidget {
-  const CoffeeTile({super.key});
+  final String image, name, subtitle, price;
+
+  const CoffeeTile({required this.image, required this.price, required this.subtitle, required this.name});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CoffeeTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network("https://images.pexels.com/photos/14704661/pexels-photo-14704661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+              child: Image.network(image),
             ),
             Padding(
               padding:
@@ -30,7 +32,7 @@ class CoffeeTile extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Americano",
+                    name,
                     style: GoogleFonts.bebasNeue(
                       fontSize: 20,
                     ),
@@ -39,7 +41,7 @@ class CoffeeTile extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    "with Almond Milk",
+                    subtitle,
                     style: GoogleFonts.bebasNeue(
                       color: Colors.grey[700],
                     ),
@@ -54,11 +56,10 @@ class CoffeeTile extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("\$10.00",
-                  style: GoogleFonts.bebasNeue(
-            
-                  ),),
-            
+                  Text(
+                    price,
+                    style: GoogleFonts.bebasNeue(),
+                  ),
                   Container(
                     padding: EdgeInsets.all(4),
                     decoration: BoxDecoration(
@@ -66,7 +67,6 @@ class CoffeeTile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Icon(Icons.add),
-            
                   ),
                 ],
               ),

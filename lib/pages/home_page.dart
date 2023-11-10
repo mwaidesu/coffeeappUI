@@ -37,6 +37,13 @@ class _HomePageState extends State<HomePage> {
     ],
   ];
 
+  final List coffeeTile = [
+    ["https://images.pexels.com/photos/57690/pexels-photo-57690.jpeg", "\$20.00", "With Almond Milk", "Cappucino"],
+    ["https://images.pexels.com/photos/544113/pexels-photo-544113.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "\$10.00", "With Extra Cream", "Americano"],
+    ["https://images.pexels.com/photos/2074122/pexels-photo-2074122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "\$15.00", "Freshly Roasted Beans", "Strungi"],
+    ["https://images.pexels.com/photos/1579043/pexels-photo-1579043.jpeg?auto=compress&cs=tinysrgb&w=400", "\$12.00", "Ethiopian Coffee", "Chai Dubia"],
+  ];
+
   void coffeeTypeSelected(int index) {
     setState(() {
       for (int i = 0; i < coffeeType.length; i++) {
@@ -135,6 +142,25 @@ class _HomePageState extends State<HomePage> {
                 }),
           ),
 
+          SizedBox(
+            height: 25.0,
+          ),
+
+          Expanded(
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: coffeeTile.length,
+                  itemBuilder: ((context, index) {
+                    return CoffeeTile(
+                        image:coffeeTile[index][0],
+                        price: coffeeTile[index][1],
+                        subtitle: coffeeTile[index][2],
+                        name: coffeeTile[index][3]
+                        
+                        
+                        
+                        );
+                  }))),
           //bottom nav bar
         ],
       ),
